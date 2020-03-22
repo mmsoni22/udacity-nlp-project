@@ -1,10 +1,16 @@
 const handleSubmit = (event) => {
     event.preventDefault()
 
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
+  // Get form data
+	let formText = ( document.getElementById( 'URL' ) ) ? document.getElementById( 'URL' ).value: "";
 
-    Client.checkForName(formText)
+	// Exit function early if the URL is invalid
+	if( !validURL( formText ) ){
+
+		alert( "Please enter a valid, full URL address.\nExample: https://www.google.com/" );
+		return false;
+
+	}
 
     console.log("::: Form Submitted :::")
     fetch('http://localhost:8081/test')
