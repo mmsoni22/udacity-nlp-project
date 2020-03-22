@@ -32,6 +32,7 @@ let textapi = new aylien({
 	application_key: process.env.API_KEY
 });
 
+// Setup default route for app
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
@@ -44,3 +45,29 @@ app.listen(8081, function () {
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
+
+// Setup route for handling Aylien API requests
+app.post( '/process', function ( request, response ) {
+
+	console.log( `'Process' POST route triggered with the following content:` );
+	console.log( request.body );
+
+	textapi.classify( {
+			'url': request.body.url
+		}, function ( apiError, apiResponse ) {
+
+			if( apiError === null ){
+
+				console.log( apiResponse );
+				response.send( apiResponse );
+				
+
+			}else{
+
+				response.send( { 'error': 'Could not find and/or process URL.' } );
+
+			}
+
+		});
+
+});
