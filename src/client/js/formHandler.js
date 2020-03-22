@@ -1,4 +1,4 @@
-function handleSubmit(event) {
+const handleSubmit = (event) => {
     event.preventDefault()
 
     // check what text was put into the form field
