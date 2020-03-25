@@ -1,3 +1,4 @@
+import validURL from  "./nameChecker"
 const handleSubmit = (event) => {
     event.preventDefault()
 
