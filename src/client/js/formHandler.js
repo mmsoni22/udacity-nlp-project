@@ -1,4 +1,5 @@
-import validURL from  "./nameChecker"
+import validURL from  "./nameChecker";
+
 const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -13,14 +14,36 @@ const handleSubmit = (event) => {
 
 	}
 
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8081/test')
-    .then(res => {
-        return res.json()
-    })
-    .then(function(data) {
-        document.getElementById('results').innerHTML = data.message
-    })
-}
+    document.getElementById( 'Results' ).innerHTML = 'Processing URL...';
 
-export { handleSubmit }
+ fetch("/process", {
+    method : "POST",
+    credentials : "same-origin",
+    headers : {
+        "Content-type" : "application/json"
+    },
+    body : JSON.stringify({
+        "url" : formText
+    })
+ })
+ .then((response)=>{
+     return response.json();
+ })
+ .then((data)=> {
+     let resultText = "";
+     let validResult = false;
+
+     if(data.catagories) {
+         if(data.catagories.length > 0) {
+             resultText = data.catagories[0].label;
+             validResult = true; 
+         }
+     }
+     if(!validResult) {
+         resultText = "Sorry, we could not accurately classify the text found at: " + formText;
+     }
+     document.getElementById( 'Results' ).innerHTML = resultText;
+
+ });
+};
+export { handleSubmit };
