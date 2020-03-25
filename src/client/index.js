@@ -7,8 +7,7 @@ import './styles/footer.scss'
 import './styles/header.scss'
 
 
-console.log(checkForName);
-alert("I Exist!");
+
 
 export {
     validURL,
