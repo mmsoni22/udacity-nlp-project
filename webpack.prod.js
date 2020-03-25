@@ -31,5 +31,9 @@ plugins: [
         filename: "./index.html",
     }),
     new MiniCssExtractPlugin({filename: '[name].css'})
-]
+],
+output: {
+    libraryTarget: 'var',
+    library: 'Client'
+}
 }

@@ -1,7 +1,7 @@
 import validURL from  "./nameChecker";
 
 const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
   // Get form data
 	let formText = ( document.getElementById( 'URL' ) ) ? document.getElementById( 'URL' ).value: "";
