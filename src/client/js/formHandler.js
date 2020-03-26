@@ -1,4 +1,4 @@
-import validURL from  "./nameChecker";
+import {validURL} from  "./nameChecker";
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,3 +47,4 @@ const handleSubmit = (event) => {
  });
 };
 export { handleSubmit };
+
